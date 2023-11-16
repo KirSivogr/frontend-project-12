@@ -1,7 +1,10 @@
 import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
-import App from './components/App.jsx';
+import { Provider } from 'react-redux';
+import App from './App';
 import resources from './locales/index.js';
+import store from './slices/index';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const init = async () => {
     const i18n = i18next.createInstance();
@@ -14,9 +17,11 @@ const init = async () => {
         });
 
     return (
-        <I18nextProvider i18n={i18n}>
-            <App />
-        </I18nextProvider>
+        <Provider store={store}>
+            <I18nextProvider i18n={i18n}>
+                <App />
+            </I18nextProvider>
+        </Provider>
     );
 };
 
